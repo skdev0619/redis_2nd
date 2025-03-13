@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cinema
+  datasource:
+    url: jdbc:mysql://localhost:33306/cinema
+    username: user
+    password: 1q2w3e4r
+  flyway:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
