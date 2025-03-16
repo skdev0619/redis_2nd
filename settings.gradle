@@ -1,1 +1,3 @@
-rootProject.name = 'redis_2nd'
+rootProject.name = 'cinema'
+include 'domain'
+
