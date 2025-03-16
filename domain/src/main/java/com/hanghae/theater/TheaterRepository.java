@@ -1,6 +1,8 @@
 package com.hanghae.theater;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-public interface TheaterRepository extends JpaRepository<Theater, Long> {
+public interface TheaterRepository {
+    Theater save(Theater theater);
+    Optional<Theater> findById(Long id);
 }
