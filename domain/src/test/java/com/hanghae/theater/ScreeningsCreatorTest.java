@@ -1,11 +1,11 @@
 package com.hanghae.theater;
 
 import com.hanghae.common.vo.PositiveNumber;
+import com.hanghae.inmemory.InMemoryMovieRepository;
 import com.hanghae.movie.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,14 +15,17 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@SpringBootTest
 class ScreeningsCreatorTest {
 
-    @Autowired
     private MovieRepository movieRepository;
 
-    @Autowired
     private ScreeningsCreator screeningsCreator;
+
+    @BeforeEach
+    void setUp() {
+        this.movieRepository = new InMemoryMovieRepository();
+        this.screeningsCreator = new ScreeningsCreator(movieRepository);
+    }
 
     @DisplayName("존재하지 않는 영화를 상영에 추가하면 예외 발생한다")
     @Test
@@ -45,7 +48,7 @@ class ScreeningsCreatorTest {
     @DisplayName("상영일이 영화 개봉일보다 이전이면 예외 발생한다")
     @Test
     void validateDate() {
-        Movie movie = movieRepository.save(createMovie(LocalDate.of(2025, 3, 15)));
+        Movie movie = movieRepository.save(createMovie(1L, LocalDate.of(2025, 3, 15)));
         Screening screening = new Screening(
                 movie.getId(),
                 1,
