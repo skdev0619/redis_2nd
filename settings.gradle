@@ -1,3 +1,4 @@
 rootProject.name = 'cinema'
 include 'domain'
+include 'application'
 
