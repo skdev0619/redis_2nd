@@ -1,5 +1,4 @@
 rootProject.name = 'cinema'
-include 'domain'
-include 'application'
-include 'presentation'
-
+include '01-domain'
+include '02-application'
+include '03-presentation'
